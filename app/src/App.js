@@ -15,6 +15,10 @@ function App(props) {
   return (
     <div className="App">
       <input type='button' value='Generate a person' onClick={handleClick}/>
+      <div>
+        {props.isFetching && 'fetching...'}
+        {props.person && (props.person.name.first + ' ' + props.person.name.last)}
+      </div>
     </div>
   );
 }

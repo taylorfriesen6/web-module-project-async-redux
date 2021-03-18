@@ -1,7 +1,11 @@
 import {FETCH_DATA_START, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE} from '../actions';
 
+
+
 export const initialState = {
-  data: 'test'
+  person: null,
+  isFetching: false,
+  didFail: false
 }
 
 export const reducer = (state, action) => {
@@ -9,17 +13,21 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case FETCH_DATA_START:
       return {
-        ...state,
-        data: 'start'
+        person: null,
+        isFetching: true,
+        didFail: false
       };
     case FETCH_DATA_SUCCESS:
       return {
-        ...state,
-        data: 'success'
+        person: action.payload,
+        isFetching: false,
+        didFail: false
       };
     case FETCH_DATA_FAILURE:
       return {
-        ...state
+        person: null,
+        isFetching: false,
+        didFail: true
       }
     default:
       return state;
